@@ -6,5 +6,5 @@ struct Node
     Node* left;
     Node* right;
 
-    Node(int item) : key(item), left(nullptr), right(nullptr) {}
+    Node(int item);
 };

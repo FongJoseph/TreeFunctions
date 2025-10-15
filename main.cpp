@@ -3,7 +3,7 @@
 using namespace std;
 
 int main() {
-    char* hello_string = "Hello, World!";
+    string hello_string = "Hello, World!";
 
     Node* hello_root = new Node((int)hello_string[0]);
     Node* hello_current = hello_root;
@@ -18,6 +18,8 @@ int main() {
         cout << (char)(hello_current->key);
         hello_current = hello_current->right;
     }
+
+    cout << endl;
 
     return 0;
 }
