@@ -7,4 +7,6 @@ struct Node
     Node* right;
 
     Node(int item);
+
+    Node* search(int search_key);
 };
