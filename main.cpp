@@ -18,8 +18,9 @@ int main() {
         cout << (char)(hello_current->key);
         hello_current = hello_current->right;
     }
-
     cout << endl;
+
+    delete hello_root;
 
     return 0;
 }

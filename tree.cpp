@@ -5,6 +5,14 @@ Node::Node(int item) {
     left = right = nullptr;
 }
 
+// Warning: This "dumb" destructor deletes all descendant nodes!
+// A "smart" function to remove just one node is part of the assignment.
+Node::~Node() {
+    // Recursively delete left and right children
+    delete left;
+    delete right;
+}
+
 // Recursive function to search a Node's descendants for the value search_key
 Node* Node::search(int search_key) {
     // Base case: search_key = this key

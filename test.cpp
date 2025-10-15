@@ -19,7 +19,5 @@ TEST(TreeTest, NodeSearch) {
     EXPECT_NE(testTree->search(15), nullptr);
     EXPECT_EQ(testTree->search(20), nullptr);
 
-    delete testTree->left;
-    delete testTree->right;
     delete testTree;
 }
