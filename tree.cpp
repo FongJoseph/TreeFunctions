@@ -74,7 +74,7 @@ string Node::toSVGelement(double x, double dx, double y, int hue) {
         }
     }
 
-    svg += "<circle class='node' cx='" + to_string(x) + "' cy='" + to_string(y) +
+    svg += "<circle class='node' r='24' cx='" + to_string(x) + "' cy='" + to_string(y) +
                  "' fill='hsl(" + to_string(hue) + ", 50%, 90%)' />\n";
     svg += "<text class='node-text' x='" + to_string(x) + "' y='" + to_string(y) +
            "'>" +
@@ -91,7 +91,7 @@ string Node::toSVG() {
         "<style>\n"
         ".edge { stroke: #333; stroke-width: 2px; }\n"
         ".truncated { stroke-dasharray: 8 4; }\n"
-        ".node { stroke: #333; stroke-width: 2px; r: 24px; }\n"
+        ".node { stroke: #333; stroke-width: 2px; }\n"
         ".node-text { font: 16px sans-serif; text-anchor: middle; dominant-baseline: central; }\n"
         "</style>\n";
 
