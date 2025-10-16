@@ -1,4 +1,5 @@
 #pragma once
+using namespace std;
 
 struct Node
 {
@@ -10,4 +11,6 @@ struct Node
     ~Node();
 
     Node* search(int search_key);
+    string toSVGelement(double x, double y, double dx, int hue);
+    string toSVG();
 };
