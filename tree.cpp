@@ -35,6 +35,58 @@ Node* Node::search(int search_key) {
     return nullptr;
 }
 
+//helper find min function
+findMin(Node* node){
+    while(node->left != nullptr)
+        node = node->left;
+
+    return node;
+}
+
+//remove a node with specified value from the tree
+//returns the new root of subtree after deletion
+Node* Node::removeValue(int toRemove){
+    if(toRemove < key){
+        if(left != nullptr){
+            left = left->removeValue(toRemove)
+        }
+    return this;
+    }
+    else if(toRemove > key){
+        if(right != nullptr){
+            right = right->removeValue(toRemove);
+        }
+    return this;
+    }
+
+    else{
+        if(left == nullptr && right == nullptr){ // case 1 Node has no children
+            delete this;
+            return nullptr;
+        }
+        else if(left == nullptr){ // case 2 Node has only right child
+            Node* temp = right;
+            right = nullptr;
+            delete this;
+            return temp;
+        }
+        else if(right == nullptr){ // case 3 Node has only left child
+            Node* temp = left;
+            left = nullptr;
+            delete this;
+            return temp;
+        }
+        else{ // case 4 Node has two children
+            Node* successor = findMin(right);
+
+            key = successor->key;
+
+            right = right->removeValue(successor->key);
+            return this;
+        }
+    }
+}
+
 // Recursive function to generate SVG elements for a node and its descendants
 // Levels more than 5 deep are truncated
 #define SVG_DY 100
