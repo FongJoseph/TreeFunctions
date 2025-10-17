@@ -14,5 +14,5 @@ struct Node
     string toSVGelement(double x, double y, double dx, int hue);
     string toSVG();
 
-    void removeValue(int toRemove);
+    Node* removeValue(int toRemove);
 };
