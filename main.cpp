@@ -26,9 +26,8 @@ int main() {
 
     // Temporary code
     // Example usage of Matt's toSVG function
-    ofstream svgfile("hello.svg");
-    svgfile << hello_root->toSVG();
-    svgfile.close();
+    // Outputs hello_root graphically to a file "hello.svg"
+    ofstream("hello.svg") << hello_root->toSVG();
 
     delete hello_root;
 
@@ -57,41 +56,31 @@ int main() {
     cout << "Created BST with values: 50, 30, 70, 20, 40, 60, 80" << endl;
     
     // Save initial tree
-    ofstream svg1("tree_initial.svg");
-    svg1 << root->toSVG();
-    svg1.close();
+    ofstream("tree_initial.svg") << root->toSVG();
     cout << "Saved initial tree to tree_initial.svg" << endl;
     
     // Test 1: Remove a leaf node
     cout << "\nRemoving leaf node 20..." << endl;
     root = root->removeValue(20);
-    ofstream svg2("tree_after_remove_20.svg");
-    svg2 << root->toSVG();
-    svg2.close();
+    ofstream("tree_after_remove_20.svg") << root->toSVG();
     cout << "Saved to tree_after_remove_20.svg" << endl;
     
     // Test 2: Remove a node with one child
     cout << "\nRemoving node 30 (has one child: 40)..." << endl;
     root = root->removeValue(30);
-    ofstream svg3("tree_after_remove_30.svg");
-    svg3 << root->toSVG();
-    svg3.close();
+    ofstream("tree_after_remove_30.svg") << root->toSVG();
     cout << "Saved to tree_after_remove_30.svg" << endl;
     
     // Test 3: Remove a node with two children
     cout << "\nRemoving node 70 (has two children: 60, 80)..." << endl;
     root = root->removeValue(70);
-    ofstream svg4("tree_after_remove_70.svg");
-    svg4 << root->toSVG();
-    svg4.close();
+    ofstream("tree_after_remove_70.svg") << root->toSVG();
     cout << "Saved to tree_after_remove_70.svg" << endl;
     
     // Test 4: Remove the root
     cout << "\nRemoving root node 50..." << endl;
     root = root->removeValue(50);
-    ofstream svg5("tree_after_remove_root.svg");
-    svg5 << root->toSVG();
-    svg5.close();
+    ofstream("tree_after_remove_root.svg") << root->toSVG();
     cout << "Saved to tree_after_remove_root.svg" << endl;
     
     // Test 5: Verify search still works
