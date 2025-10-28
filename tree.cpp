@@ -36,7 +36,7 @@ Node* Node::search(int search_key) {
 }
 
 //helper find min function
-findMin(Node* node){
+Node* findMin(Node* node){
     while(node->left != nullptr)
         node = node->left;
 
@@ -48,7 +48,7 @@ findMin(Node* node){
 Node* Node::removeValue(int toRemove){
     if(toRemove < key){
         if(left != nullptr){
-            left = left->removeValue(toRemove)
+            left = left->removeValue(toRemove);
         }
     return this;
     }
