@@ -91,19 +91,26 @@ Node* Node::removeValue(int toRemove){
 // Levels more than 5 deep are truncated
 #define SVG_DY 100
 #define SVG_MAX_Y 500
+const char* node_color[] = {
+    "#f2d9d9",
+    "#f2f2d9",
+    "#d9f2d9",
+    "#d9f2f2",
+    "#d9d9f2"
+};
 string Node::toSVGelement(double x, double dx, double y, int hue) {
     string svg;
     
     if (left != nullptr) {
         if (y + SVG_DY < SVG_MAX_Y) {
-            svg += "<line class='edge' x1='" + to_string(x) + "' y1='" + to_string(y) +
+            svg += "<line stroke='#333' stroke-width='2' x1='" + to_string(x) + "' y1='" + to_string(y) +
                "' x2='" + to_string(x - dx) +
                "' y2='" + to_string(y + SVG_DY) +
                "' />\n";
-            svg += left->toSVGelement(x - dx, dx / 2, y + SVG_DY, hue + 60);
+            svg += left->toSVGelement(x - dx, dx / 2, y + SVG_DY, hue + 1);
         }
         else {
-            svg += "<line class='edge truncated' x1='" + to_string(x) + "' y1='" + to_string(y) +
+            svg += "<line stroke='#333' stroke-width='2' stroke-dasharray='8 4' x1='" + to_string(x) + "' y1='" + to_string(y) +
                "' x2='" + to_string(x - dx) +
                "' y2='" + to_string(y + SVG_DY) +
                "' />\n";
@@ -112,23 +119,23 @@ string Node::toSVGelement(double x, double dx, double y, int hue) {
 
     if (right != nullptr) {
         if (y + SVG_DY < SVG_MAX_Y) {
-            svg += "<line class='edge' x1='" + to_string(x) + "' y1='" + to_string(y) +
+            svg += "<line stroke='#333' stroke-width='2' x1='" + to_string(x) + "' y1='" + to_string(y) +
                "' x2='" + to_string(x + dx) +
                "' y2='" + to_string(y + SVG_DY) +
                "' />\n";
-            svg += right->toSVGelement(x + dx, dx / 2, y + SVG_DY, hue + 60);
+            svg += right->toSVGelement(x + dx, dx / 2, y + SVG_DY, hue + 1);
         }
         else {
-            svg += "<line class='edge truncated' x1='" + to_string(x) + "' y1='" + to_string(y) +
+            svg += "<line stroke='#333' stroke-width='2' stroke-dasharray='8 4' x1='" + to_string(x) + "' y1='" + to_string(y) +
                "' x2='" + to_string(x + dx) +
                "' y2='" + to_string(y + SVG_DY) +
                "' />\n";
         }
     }
 
-    svg += "<circle class='node' r='24' cx='" + to_string(x) + "' cy='" + to_string(y) +
-                 "' fill='hsl(" + to_string(hue) + ", 50%, 90%)' />\n";
-    svg += "<text class='node-text' x='" + to_string(x) + "' y='" + to_string(y) +
+    svg += "<circle stroke='#333' stroke-width='2' r='24' cx='" + to_string(x) + "' cy='" + to_string(y) +
+                 "' fill='" + node_color[hue] + "' />\n";
+    svg += "<text font-family='sans-serif' font-size='16' text-anchor='middle' x='" + to_string(x) + "' y='" + to_string(y + 6) +
            "'>" +
            to_string(key) + "</text>\n";
 
@@ -139,13 +146,7 @@ string Node::toSVGelement(double x, double dx, double y, int hue) {
 // Generates an SVG document for the tree rooted at this node
 string Node::toSVG() {
     string svg_header =
-        "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 600'>\n"
-        "<style>\n"
-        ".edge { stroke: #333; stroke-width: 2px; }\n"
-        ".truncated { stroke-dasharray: 8 4; }\n"
-        ".node { stroke: #333; stroke-width: 2px; }\n"
-        ".node-text { font: 16px sans-serif; text-anchor: middle; dominant-baseline: central; }\n"
-        "</style>\n";
+        "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 600'>\n";
 
     string svg_body = toSVGelement(512, 256, 50, 0);
 
