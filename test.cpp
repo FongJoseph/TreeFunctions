@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "tree.h"
+using namespace std;
 
 TEST(TreeTest, NodeInitialization) {
     Node* testNode = new Node(42);
@@ -20,4 +21,32 @@ TEST(TreeTest, NodeSearch) {
     EXPECT_EQ(testTree->search(20), nullptr);
 
     delete testTree;
+}
+
+TEST(TreeTest, ToSVGHeader) {
+    Node* testNode = new Node(7);
+    string svg = testNode->toSVG();
+    EXPECT_EQ(svg.substr(0, svg.find('\n')),
+        "<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox='0 0 1024 600'>");
+    delete testNode;
+}
+
+TEST(TreeTest, ToSVGElement) {
+    Node* testNode = new Node(7);
+    string svg = testNode->toSVGelement(512, 256, 50, 0);
+    EXPECT_EQ(svg,
+        "<circle stroke='#333' stroke-width='2' r='24' cx='512.000000' cy='50.000000' fill='#f2d9d9' />\n"
+        "<text font-family='sans-serif' font-size='16' text-anchor='middle' x='512.000000' y='56.000000'>"
+        "7"
+        "</text>\n"
+    );
+    delete testNode;
+}
+
+TEST(TreeTest, ToSVGFooter) {
+    Node* testNode = new Node(7);
+    string svg = testNode->toSVG();
+    EXPECT_EQ(svg.substr(svg.size() - 7),
+        "</svg>\n");
+    delete testNode;
 }
