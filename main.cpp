@@ -99,6 +99,10 @@ int main() {
             cout << "Search for 20: Not found (correct, we deleted it)" << endl;
         }
     }
+
+    // print out if tree is balanced or not - Marc Cabrera
+      cout << (root->isBalanced() ? "The tree is balanced" : "Tree is not balanced") << endl;
+
     
     // Clean up
     delete root;
