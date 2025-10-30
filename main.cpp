@@ -103,7 +103,16 @@ int main() {
     // print out if tree is balanced or not - Marc Cabrera
       cout << (root->isBalanced() ? "The tree is balanced" : "Tree is not balanced") << endl;
 
-    
+	//Test 6: Traverse LNR - David Nutley
+    if (root != nullptr) {
+        cout << "\nLNR Traversal of current tree: ";
+        string traversal = root->traverseLNR(root);
+        for (char c : traversal) {
+            cout << c << " ";
+        }
+        cout << endl;
+	}
+
     // Clean up
     delete root;
     
