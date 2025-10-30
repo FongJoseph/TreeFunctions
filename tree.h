@@ -15,4 +15,11 @@ struct Node
     string toSVG();
 
     Node* removeValue(int toRemove);
+
+ //added for tree balance checking - Marc
+
+ bool isBalanced();
+ int height();
+
+
 };
