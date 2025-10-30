@@ -50,3 +50,12 @@ TEST(TreeTest, ToSVGFooter) {
         "</svg>\n");
     delete testNode;
 }
+
+TEST (TreeTest, TraverseLNR) {
+    Node* root = new Node(2);
+    root->left = new Node(1);
+    root->right = new Node(3);
+    string traversal = root->traverseLNR(root);
+    EXPECT_EQ(traversal, "1 2 3 ");
+    delete root;
+}
