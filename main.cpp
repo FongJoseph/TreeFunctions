@@ -22,8 +22,10 @@ int main() {
 
 
     // ============================================================================
-    // Example usage of Joseph's removeValue function
+    // Example usage/testing of Joseph's removeValue function
     // ============================================================================
+    
+    cout << "\n=== Testing removeValue ===" << endl;
     
     // Create a sample BST
     //       50
@@ -40,10 +42,53 @@ int main() {
     root->right->left = new Node(60);
     root->right->right = new Node(80);
     
-    // Save tree before and after removing a node
-    ofstream("tree_before.svg") << root->toSVG();
+    cout << "Created BST with values: 50, 30, 70, 20, 40, 60, 80" << endl;
+    
+    // Save initial tree
+    ofstream("tree_initial.svg") << root->toSVG();
+    cout << "Saved initial tree to tree_initial.svg" << endl;
+    
+    // Test 1: Remove a leaf node
+    cout << "\nRemoving leaf node 20..." << endl;
+    root = root->removeValue(20);
+    ofstream("tree_after_remove_20.svg") << root->toSVG();
+    cout << "Saved to tree_after_remove_20.svg" << endl;
+    
+    // Test 2: Remove a node with one child
+    cout << "\nRemoving node 30 (has one child: 40)..." << endl;
+    root = root->removeValue(30);
+    ofstream("tree_after_remove_30.svg") << root->toSVG();
+    cout << "Saved to tree_after_remove_30.svg" << endl;
+    
+    // Test 3: Remove a node with two children
+    cout << "\nRemoving node 70 (has two children: 60, 80)..." << endl;
     root = root->removeValue(70);
-    ofstream("tree_after.svg") << root->toSVG();
+    ofstream("tree_after_remove_70.svg") << root->toSVG();
+    cout << "Saved to tree_after_remove_70.svg" << endl;
+    
+    // Test 4: Remove the root
+    cout << "\nRemoving root node 50..." << endl;
+    root = root->removeValue(50);
+    ofstream("tree_after_remove_root.svg") << root->toSVG();
+    cout << "Saved to tree_after_remove_root.svg" << endl;
+    
+    // Test 5: Verify search still works
+    if (root != nullptr) {
+        Node* found = root->search(80);
+        if (found != nullptr) {
+            cout << "\nSearch for 80: Found! Key = " << found->key << endl;
+        } else {
+            cout << "\nSearch for 80: Not found" << endl;
+        }
+        
+        Node* notFound = root->search(20);
+        if (notFound != nullptr) {
+            cout << "Search for 20: Found! Key = " << notFound->key << endl;
+        } else {
+            cout << "Search for 20: Not found (correct, we deleted it)" << endl;
+        }
+    }
+
 
     // print out if tree is balanced or not - Marc Cabrera
       cout << (root->isBalanced() ? "The tree is balanced" : "Tree is not balanced") << endl;
