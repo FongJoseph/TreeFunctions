@@ -11,7 +11,7 @@ int main() {
     Node* hello_root = new Node((int)hello_string[0]);
 
     for (int i = 1; hello_string[i] != '\0'; i++)
-        hello_root->insert((int)hello_string[i]);
+        hello_root = hello_root->insert((int)hello_string[i]);
 
     // Temporary code
     // Example usage of Matt's toSVG function
