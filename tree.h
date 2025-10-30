@@ -16,6 +16,7 @@ struct Node
 
     Node* removeValue(int toRemove);
 
+    string traverseLNR(Node* root); //David N
  //added for tree balance checking - Marc
 
  bool isBalanced();
