@@ -15,6 +15,7 @@ struct Node
     string toSVG();
 
     Node* removeValue(int toRemove);
+    Node* insert(int toInsert);
 
     string traverseLNR(Node* root); //David N
  //added for tree balance checking - Marc

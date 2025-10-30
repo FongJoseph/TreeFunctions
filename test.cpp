@@ -23,6 +23,17 @@ TEST(TreeTest, NodeSearch) {
     delete testTree;
 }
 
+TEST(TreeTest, InsertNode) {
+    Node* testTree = new Node(10);
+    testTree = testTree->insert(5);
+    testTree = testTree->insert(15);
+
+    EXPECT_NE(testTree->search(5), nullptr);
+    EXPECT_NE(testTree->search(15), nullptr);
+
+    delete testTree;
+}
+
 TEST(TreeTest, ToSVGHeader) {
     Node* testNode = new Node(7);
     string svg = testNode->toSVG();

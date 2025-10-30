@@ -87,6 +87,29 @@ Node* Node::removeValue(int toRemove){
     }
 }
 
+// Inserts a new value into the BST and returns the (possibly unchanged) root node
+Node* Node::insert(int toInsert) {
+    if (toInsert < key) {
+        if (left == nullptr) {
+            left = new Node(toInsert);
+        }
+        else {
+            left = left->insert(toInsert);
+        }
+    }
+    else if (toInsert > key) {
+        if (right == nullptr) {
+            right = new Node(toInsert);
+        }
+        else {
+            right = right->insert(toInsert);
+        }
+    }
+    // If toInsert == key, do nothing (no duplicates in this BST)
+    return this;
+}
+
+
 // Recursive function to generate SVG elements for a node and its descendants
 // Levels more than 5 deep are truncated
 #define SVG_DY 100

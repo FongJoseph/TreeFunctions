@@ -9,20 +9,9 @@ int main() {
     string hello_string = "Hello, World!";
 
     Node* hello_root = new Node((int)hello_string[0]);
-    Node* hello_current = hello_root;
 
-    for (int i = 1; hello_string[i] != '\0'; i++) {
-        hello_current->right = new Node((int)hello_string[i]);
-        hello_current = hello_current->right;
-    }
-
-    // Print the tree in order, right nodes only
-    hello_current = hello_root;
-    while (hello_current != nullptr) {
-        cout << (char)(hello_current->key);
-        hello_current = hello_current->right;
-    }
-    cout << endl;
+    for (int i = 1; hello_string[i] != '\0'; i++)
+        hello_root->insert((int)hello_string[i]);
 
     // Temporary code
     // Example usage of Matt's toSVG function
