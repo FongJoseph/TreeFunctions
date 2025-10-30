@@ -154,3 +154,30 @@ string Node::toSVG() {
 
     return svg_header + svg_body + svg_footer;
 }
+
+// function that returns the height of a node. - Marc Cabrera
+int Node::height() {
+    if (this == nullptr)
+        return 0;
+
+    int leftHeight = (left != nullptr) ? left->height() : 0;
+    int rightHeight = (right != nullptr) ? right->height() : 0;
+
+    return 1 + max(leftHeight, rightHeight);
+}
+
+// Checks if the tree rooted at this node is balanced - Marc Cabrera
+bool Node::isBalanced() {
+    if (this == nullptr)
+        return true;
+
+    int leftHeight = (left != nullptr) ? left->height() : 0;
+    int rightHeight = (right != nullptr) ? right->height() : 0;
+
+    int balanceFactor = abs(leftHeight - rightHeight);
+
+    bool leftBalanced = (left != nullptr) ? left->isBalanced() : true;
+    bool rightBalanced = (right != nullptr) ? right->isBalanced() : true;
+
+    return (balanceFactor <= 1) && leftBalanced && rightBalanced;
+}
