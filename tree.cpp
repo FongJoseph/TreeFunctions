@@ -181,3 +181,14 @@ bool Node::isBalanced() {
 
     return (balanceFactor <= 1) && leftBalanced && rightBalanced;
 }
+
+// "Traverse Tree LNR" by David Nutley
+// Traverses the tree recursively in LNR order and returns a string
+
+string Node::traverseLNR(Node* root) {
+    
+    if (root == nullptr) {
+        return "";
+    }
+    return traverseLNR(root->left) + to_string(root->key) + " " + traverseLNR(root->right);
+}
